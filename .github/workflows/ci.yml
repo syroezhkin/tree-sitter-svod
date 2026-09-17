@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install tree-sitter CLI
+        run: npm install -g tree-sitter-cli@0.26.11
+
+      - name: Regenerate parser
+        run: tree-sitter generate
+
+      - name: Check that committed src/ is up to date
+        run: git diff --exit-code -- src/
+
+      - name: Run corpus tests
+        run: tree-sitter test

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "svod",
+      "camelcase": "Svod",
+      "title": "Svod",
+      "scope": "source.svod",
+      "file-types": [
+        "svod"
+      ],
+      "injection-regex": "^svod$",
+      "class-name": "TreeSitterSvod"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.2",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for the Svod engineering-calculation language",
+    "authors": [
+      {
+        "name": "Vladimir Syroezhkin",
+        "email": "vladimir@syroezhkin.net"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/syroezhkin/tree-sitter-svod"
+    }
+  }
+}
