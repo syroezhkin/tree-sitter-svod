@@ -1,0 +1,65 @@
+==================
+Line comment
+==================
+
+-- comment
+1
+
+---
+
+(program
+  (line_comment)
+  (statement
+    (atom
+      (integer))))
+
+==================
+Block comment after code
+==================
+
+1
+--[[ block
+multi-line ]]
+2
+
+---
+
+(program
+  (statement
+    (atom
+      (integer)))
+  (block_comment)
+  (statement
+    (atom
+      (integer))))
+
+==================
+Block comment levels
+==================
+
+--[=[ level one ]=]
+--[==[ level two ]==]
+--[===[ level three ]===]
+
+---
+
+(program
+  (block_comment)
+  (block_comment)
+  (block_comment))
+
+==================
+Block comment before line comment
+==================
+
+--[[ block ]] -- trailing line
+3
+
+---
+
+(program
+  (block_comment)
+  (line_comment)
+  (statement
+    (atom
+      (integer))))
