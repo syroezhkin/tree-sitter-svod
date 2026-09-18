@@ -1,0 +1,223 @@
+==================
+Input with unit and description
+==================
+
+input t as мм : толщина стенки = 10 мм
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (integer)
+        (unit)))))
+
+==================
+Input unitless with description
+==================
+
+input k as unitless : коэффициент = 0.7
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (float)))))
+
+==================
+Input untyped with description
+==================
+
+input u : описание = 1
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (description)
+      (atom
+        (integer)))))
+
+==================
+Input with only a name
+==================
+
+input h_r
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name))))
+
+==================
+Const unitless with description
+==================
+
+const γ_f as unitless : коэффициент надёжности = 1.1
+
+---
+
+(program
+  (statement
+    (const_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (float)))))
+
+==================
+Const with unit and description
+==================
+
+const c as м/с : скорость = 3e8 м/с
+
+---
+
+(program
+  (statement
+    (const_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (float)
+        (unit)))))
+
+==================
+Const plain assignment
+==================
+
+const k = 1.1
+
+---
+
+(program
+  (statement
+    (const_assignment
+      (identifier
+        (name))
+      (atom
+        (float)))))
+
+==================
+Unit declaration
+==================
+
+unit тс_м = 9.80665 кН
+
+---
+
+(program
+  (statement
+    (unit_declaration
+      (name)
+      (atom
+        (float)
+        (unit)))))
+
+==================
+Assignment with annotation and description
+==================
+
+t as м : толщина = 42 см
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name)
+        (unit_annotation
+          (unit))
+        (description))
+      (atom
+        (integer)
+        (unit)))))
+
+==================
+Assignment with description
+==================
+
+Кладка: тип кладки — по материалу = choice("а", "б")
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name)
+        (description))
+      (call_expression
+        (name)
+        (arguments
+          (string)
+          (string))))))
+
+==================
+Compound units
+==================
+
+input q as кН/м : нагрузка = 0.02 кН/м
+input A as см2 : площадь = 25.6 см2
+input T as °C : температура = 25 °C
+input П as % : процент = 48 %
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (float)
+        (unit))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (float)
+        (unit))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (integer)
+        (unit))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description)
+      (atom
+        (integer)
+        (unit)))))
