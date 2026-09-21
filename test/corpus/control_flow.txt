@@ -1,0 +1,188 @@
+==================
+If elseif else
+==================
+
+R = if x < 4 then
+        x * 10
+    elseif x < 3 then
+        x * 20
+    else
+        x * 40
+    end
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (if_expression
+        (binary_expression
+          (identifier
+            (name))
+          (comparison_operator)
+          (atom
+            (integer)))
+        (statement
+          (binary_expression
+            (identifier
+              (name))
+            (multiplicative_operator)
+            (atom
+              (integer))))
+        (elseif_clause
+          (binary_expression
+            (identifier
+              (name))
+            (comparison_operator)
+            (atom
+              (integer)))
+          (statement
+            (binary_expression
+              (identifier
+                (name))
+              (multiplicative_operator)
+              (atom
+                (integer)))))
+        (else_clause
+          (statement
+            (binary_expression
+              (identifier
+                (name))
+              (multiplicative_operator)
+              (atom
+                (integer)))))))))
+
+==================
+Match case with guard
+==================
+
+k = match Марка
+    case 75 if Марка > 60 then 0.9
+    case 50 then 0.7
+    else 1
+    end
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (match_expression
+        (identifier
+          (name))
+        (case_clause
+          (atom
+            (integer))
+          (binary_expression
+            (identifier
+              (name))
+            (comparison_operator)
+            (atom
+              (integer)))
+          (statement
+            (atom
+              (float))))
+        (case_clause
+          (atom
+            (integer))
+          (statement
+            (atom
+              (float))))
+        (else_clause
+          (statement
+            (atom
+              (integer))))))))
+
+==================
+Match multiple patterns
+==================
+
+t = match Кладка
+    case "блоки", "кирпич" then 1.2
+    case "камни" then 1.4
+    else 1.0
+    end
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (match_expression
+        (identifier
+          (name))
+        (case_clause
+          (string)
+          (string)
+          (statement
+            (atom
+              (float))))
+        (case_clause
+          (string)
+          (statement
+            (atom
+              (float))))
+        (else_clause
+          (statement
+            (atom
+              (float))))))))
+
+==================
+Begin block
+==================
+
+block_sum = begin
+    x = 1 + 1
+    x * 10
+end
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (block
+        (statement
+          (assignment
+            (identifier
+              (name))
+            (binary_expression
+              (atom
+                (integer))
+              (additive_operator)
+              (atom
+                (integer)))))
+        (statement
+          (binary_expression
+            (identifier
+              (name))
+            (multiplicative_operator)
+            (atom
+              (integer))))))))
+
+==================
+Chained assignment
+==================
+
+chain = tmp = 42
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (assignment
+        (identifier
+          (name))
+        (atom
+          (integer))))))

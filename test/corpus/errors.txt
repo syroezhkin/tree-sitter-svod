@@ -1,0 +1,13 @@
+==================
+Missing right-hand side
+==================
+
+a = ;
+
+---
+
+(program
+  (statement
+    (identifier
+      (name))
+    (ERROR)))
