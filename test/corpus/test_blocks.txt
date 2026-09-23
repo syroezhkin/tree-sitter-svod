@@ -1,0 +1,75 @@
+==================
+Top-level test block
+==================
+
+test "прочность"
+    assert(a == 1)
+end
+
+---
+
+(program
+  (test_declaration
+    name: (string)
+    (statement
+      (call_expression
+        function: (name)
+        arguments: (arguments
+          (binary_expression
+            left: (identifier
+              name: (name))
+            operator: (comparison_operator)
+            right: (atom
+              value: (integer))))))))
+
+==================
+Test block between statements
+==================
+
+a = 1
+test "t" assert(a == 1); end
+a
+
+---
+
+(program
+  (statement
+    (assignment
+      name: (identifier
+        name: (name))
+      value: (atom
+        value: (integer))))
+  (test_declaration
+    name: (string)
+    (statement
+      (call_expression
+        function: (name)
+        arguments: (arguments
+          (binary_expression
+            left: (identifier
+              name: (name))
+            operator: (comparison_operator)
+            right: (atom
+              value: (integer)))))))
+  (statement
+    (identifier
+      name: (name))))
+
+==================
+Test block with a trailing semicolon
+==================
+
+test "t" 1; end;
+2;
+
+---
+
+(program
+  (test_declaration
+    name: (string)
+    (statement
+      (atom
+        value: (integer))))
+  (statement
+    (atom
+      value: (integer))))

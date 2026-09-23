@@ -1,0 +1,139 @@
+==================
+Conversion inside parentheses
+==================
+
+x = (2 м in см) * 3
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (binary_expression
+        (parenthesized_expression
+          (atom
+            (integer)
+            (unit))
+          (unit))
+        (multiplicative_operator)
+        (atom
+          (integer))))))
+
+==================
+Where clause inside parentheses
+==================
+
+x = (2 м where a = 1 end) * 3
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (binary_expression
+        (parenthesized_expression
+          (atom
+            (integer)
+            (unit))
+          (where_clause
+            (statement
+              (assignment
+                (identifier
+                  (name))
+                (atom
+                  (integer))))))
+        (multiplicative_operator)
+        (atom
+          (integer))))))
+
+==================
+Conversion in a function argument
+==================
+
+y = max(1 м in см, 2)
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (call_expression
+        (name)
+        (arguments
+          (atom
+            (integer)
+            (unit))
+          (unit)
+          (atom
+            (integer)))))))
+
+==================
+Parenthesized conversion in a product
+==================
+
+q = (table("f.csv", X, "p") in кг/м) * #g in кН/м
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (binary_expression
+        (parenthesized_expression
+          (call_expression
+            (name)
+            (arguments
+              (string)
+              (identifier
+                (name))
+              (string)))
+          (unit))
+        (multiplicative_operator)
+        (identifier
+          (name)))
+      (unit))))
+
+==================
+Where clause on a bare expression statement
+==================
+
+check(1) where a = 2 end
+
+---
+
+(program
+  (statement
+    (call_expression
+      (name)
+      (arguments
+        (atom
+          (integer))))
+    (where_clause
+      (statement
+        (assignment
+          (identifier
+            (name))
+          (atom
+            (integer)))))))
+
+==================
+Conversion on a bare expression statement
+==================
+
+x in МПа
+
+---
+
+(program
+  (statement
+    (identifier
+      (name))
+    (unit)))

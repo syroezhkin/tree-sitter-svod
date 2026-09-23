@@ -1,0 +1,24 @@
+{
+  "name": "tree-sitter-svod",
+  "version": "0.4.0",
+  "description": "Tree-sitter grammar for the Svod engineering-calculation language",
+  "license": "MIT",
+  "keywords": [
+    "tree-sitter",
+    "svod",
+    "parser"
+  ],
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "queries/**",
+    "src/**"
+  ],
+  "devDependencies": {
+    "tree-sitter-cli": "0.26.11"
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test"
+  }
+}
