@@ -1,0 +1,299 @@
+==================
+Input with unit and description
+==================
+
+input t as мм = 10 мм desc "толщина стенки"
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (integer)
+        (unit))
+      (description_clause
+        (string)))))
+
+==================
+Input unitless with description
+==================
+
+input k as unitless = 0.7 desc "коэффициент"
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation)
+      (atom
+        (float))
+      (description_clause
+        (string)))))
+
+==================
+Input untyped with description
+==================
+
+input u = 1 desc "описание"
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (atom
+        (integer))
+      (description_clause
+        (string)))))
+
+==================
+Input with a unit and no value
+==================
+
+input t as мм desc "толщина стенки"
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (description_clause
+        (string)))))
+
+==================
+Input with only a name
+==================
+
+input h_r
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name))))
+
+==================
+Const unitless with description
+==================
+
+const γ_f as unitless = 1.1 desc "коэффициент надёжности"
+
+---
+
+(program
+  (statement
+    (const_declaration
+      (name)
+      (unit_annotation)
+      (atom
+        (float))
+      (description_clause
+        (string)))))
+
+==================
+Const with unit and description
+==================
+
+const c as м/с = 3e8 м/с desc "скорость"
+
+---
+
+(program
+  (statement
+    (const_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (float)
+        (unit))
+      (description_clause
+        (string)))))
+
+==================
+Const plain assignment
+==================
+
+const k = 1.1
+
+---
+
+(program
+  (statement
+    (const_assignment
+      (identifier
+        (name))
+      (atom
+        (float)))))
+
+==================
+Unit declaration
+==================
+
+unit тс_м = 9.80665 кН
+
+---
+
+(program
+  (statement
+    (unit_declaration
+      (name)
+      (atom
+        (float)
+        (unit)))))
+
+==================
+Assignment with annotation and description
+==================
+
+t as м = 42 см desc "толщина"
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name)
+        (unit_annotation
+          (unit)))
+      (atom
+        (integer)
+        (unit))
+      (description_clause
+        (string)))))
+
+==================
+Assignment with description
+==================
+
+Кладка = choice("а", "б") desc "тип кладки — по материалу"
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (call_expression
+        (name)
+        (arguments
+          (string)
+          (string)))
+      (description_clause
+        (string)))))
+
+==================
+Compound units
+==================
+
+input q as кН/м = 0.02 кН/м desc "нагрузка"
+input A as см2 = 25.6 см2 desc "площадь"
+input T as °C = 25 °C desc "температура"
+input П as % = 48 % desc "процент"
+
+---
+
+(program
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (float)
+        (unit))
+      (description_clause
+        (string))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (float)
+        (unit))
+      (description_clause
+        (string))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (integer)
+        (unit))
+      (description_clause
+        (string))))
+  (statement
+    (input_declaration
+      (name)
+      (unit_annotation
+        (unit))
+      (atom
+        (integer)
+        (unit))
+      (description_clause
+        (string)))))
+
+==================
+Assignment with description before where
+==================
+
+M = q * L**2 / 8 in кН*м desc "изгибающий момент"
+where
+    input q as кН/м desc "нагрузка"
+    input L as м desc "пролёт"
+end
+
+---
+
+(program
+  (statement
+    (assignment
+      (identifier
+        (name))
+      (binary_expression
+        (binary_expression
+          (identifier
+            (name))
+          (multiplicative_operator)
+          (binary_expression
+            (identifier
+              (name))
+            (power_operator)
+            (atom
+              (integer))))
+        (multiplicative_operator)
+        (atom
+          (integer)))
+      (unit)
+      (description_clause
+        (string))
+      (where_clause
+        (statement
+          (input_declaration
+            (name)
+            (unit_annotation
+              (unit))
+            (description_clause
+              (string))))
+        (statement
+          (input_declaration
+            (name)
+            (unit_annotation
+              (unit))
+            (description_clause
+              (string))))))))
